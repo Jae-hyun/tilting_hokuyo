@@ -1,0 +1,17 @@
+<package>
+  <description brief="tilting_hokuyo">
+
+     tilting_hokuyo
+
+  </description>
+  <author>JAEHYUN</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/tilting_hokuyo</url>
+  <depend package="roscpp"/>
+  <depend package="rospy"/>
+  <depend package="sensor_msgs"/>
+
+</package>
+
+
