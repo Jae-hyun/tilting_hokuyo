@@ -1,0 +1,7 @@
+<launch>
+  <!-- Start tilt joint controller -->
+  <include file="$(find tilting_hokuyo)/launch/controller_manager.launch"/>
+  <rosparam file="$(find tilting_hokuyo)/config/tilt.yaml" command="load"/>
+  <node name="tilt_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+  args="--manager=dxl_manager --port=pan_tilt_port --type=simple  tilt_controller" output="screen"/>
+</launch>

@@ -1,0 +1,11 @@
+<launch>
+  <!-- Start tilt joint controller -->
+  <!--include file="$(find tilting_hokuyo)/launch/controller_manager.launch"/-->
+  <!--rosparam file="$(find tilting_hokuyo)/config/tilt.yaml" command="load"/-->
+  <include file="$(find tilting_hokuyo)/launch/start_tilt_controller.launch" />
+  <node name="tilting_hokuyo" pkg="tilting_hokuyo" type="tilting_hokuyo" output="screen"/>
+  <node name="tf_broadcaster_tilt" pkg="tilting_hokuyo" type="tf_broadcaster_tilt" output="screen"/>
+  <node name="tilting_to_laser" pkg="tf" type="static_transform_publisher" args="0 0 0.015 0 0 0 tilt_base laser 100" output="screen"/>
+  <node name="hokuyo_node" pkg="hokuyo_node" type="hokuyo_node" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tilting_hokuyo)/launch/tilting_hokuyo.vcg" />
+</launch>
