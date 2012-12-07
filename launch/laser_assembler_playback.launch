@@ -1,0 +1,17 @@
+<launch>
+  <param name="/use_sim_time" value="true" />
+
+  <node name="play" pkg="rosbag" type="play" args="$(env ROS_WORKSPACE)/laser.bag --clock -l" />
+
+  <node name="scan_assembler" pkg="laser_assembler" type="laser_scan_assembler" output="screen">
+    <remap from="scan" to="tilt_scan"/>
+    <param name="max_scans" type="int" value="400" />
+    <param name="fixed_frame" type="string" value="base_link" />
+  </node>
+  <node name="scan_snapshuter" pkg="tilting_hokuyo" type="scan_assembler" output="screen">
+    <remap from="scan" to="tilt_scan"/>
+    <param name="window_" type="double" value="3.0"/>
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tilting_hokuyo)/launch/tilting_hokuyo.vcg"/>
+</launch>
